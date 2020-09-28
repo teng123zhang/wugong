@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="com.rc.gmall2020.manage.mapper.BaseAttrInfoMapper">
+ 
+ <resultMap type="com.rc.gmall2020.bean.BaseAttrInfo" id="baseAttrInfoMap" autoMapping="true">
+ 
+ <id property="id" column="id"></id>
+ <!-- collection中property代表返回值得名称 -->
+ <collection property="attrValueList"  ofType="com.rc.gmall2020.bean.BaseAttrValue" autoMapping="true">
+ <id property="id" column="attr_value_id"></id>
+ </collection>
+ 
+ </resultMap>
+ 
+ <select id="selectBaseAttrInfoListByCatalog3Id" resultMap="baseAttrInfoMap">
+ 
+ select sa.id,sa.attr_name,sa.catalog3_id,sv.id attr_value_id,sv.value_name,sv.attr_id from base_attr_info sa inner join base_attr_value sv on sa.id =sv.attr_id where sa.catalog3_id=#{0}
+ 
+ 
+ </select>
+ <!-- $拼接字符串 -->
+ <select id="selectAttrInfoListByIds" resultMap="baseAttrInfoMap">
+ 
+ SELECT ai.id,ai.attr_name,ai.catalog3_id, av.id attr_value_id ,av.attr_id ,av.value_name
+        FROM base_attr_info ai INNER JOIN base_attr_value av ON ai.id=av.attr_id
+        WHERE av.id IN (${valueIds})
+ 
+ 
+ </select>
+ 
+ 
+ </mapper>

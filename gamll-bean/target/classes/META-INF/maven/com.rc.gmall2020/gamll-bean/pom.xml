@@ -1,0 +1,37 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+  <groupId>com.rc.gmall2020</groupId>
+  <artifactId>gmall-parent1</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <relativePath>../gmall-parent1/pom.xml</relativePath>
+  </parent>
+  
+  <artifactId>gamll-bean</artifactId>
+ 
+  <name>gamll-bean</name>
+  
+  <dependencies>
+  <dependency>
+    <groupId>org.projectlombok</groupId>
+    <artifactId>lombok</artifactId>
+    
+</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/tk.mybatis/mapper-spring-boot-starter -->
+<dependency>
+    <groupId>tk.mybatis</groupId>
+    <artifactId>mapper-spring-boot-starter</artifactId>
+    
+
+<exclusions>
+<exclusion>
+<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-jdbc -->
+
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-jdbc</artifactId>
+    </exclusion>
+   </exclusions>
+</dependency>
+  </dependencies>
+</project>
