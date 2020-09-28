@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<!-- 外层节点-->
+<!-- debug:是否打印logback内部日志。
+    scan: 默认true。表示配置文件发生变化时重新加载
+    scanPeriod：单位默认毫秒。表示配置文件加载间隔时间。scan=true时生效-->
+<configuration  scan="true"  scanPeriod="10 seconds">
+
+    <!-- 上下文名称，可在encoder标签里调用：调用方式%cn-->
+    <contextName>logback</contextName>
+
+    <!-- 自定义变量标签。可使用${APP_NAME}方式调用 。可定义多个标签-->
+    <property name="log.path" value="D:/guli_log/edu"/>
+
+
+    <!-- 输出到控制台-->
+    <!-- append=true表示在日志里追加新内容 。ConsoleAppender控制台输出  -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+
+        <!-- 过滤器(可选属性)，通过过滤器可额外加一些控制-。filter可自定义，，logback也有封装好的-->
+        <!-- LevelFilter 准备匹配，只过滤输出error级别-->
+      <!--  <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMisMatch>DENY</onMisMatch>
+        </filter>-->
+
+        <!-- ThresholdFilter 阀门拦截过滤。只输出info及以上级别的日志-->
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
+
+        <!--控制输出格式 -->
+        <encoder>
+            <!-- %cn：上下文。%d日期。%level:日志级别 %msg:日志信息 %n换行-->
+            <Pattern>${CONSOLE_LOG_PATTERN}</Pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+
+    </appender>
+
+    <!-- 日志滚动输出到文件-->
+    <appender name="INFO_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+
+        <!--日志文件名-->
+        <file>${log.path}/log_info.log</file>
+        
+         <encoder>
+            <!-- %cn：上下文。%d日期。%level:日志级别 %msg:日志信息 %n换行-->
+            <pattern>%cn %d %M [%level] %msg%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+
+        <!-- 日志滚动规则  -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+
+            <!-- %d{yyyy-MM-dd}按天回滚日志-->
+            <fileNamePattern>${log.path}/info/log_info_%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+            
+            <maxFileSize>100MB</maxFileSize>
+         
+            </timeBasedFileNamingAndTriggeringPolicy>
+
+        </rollingPolicy>
+        
+         <filter class="ch.qos.logback.classic.filter.LevelFilter">
+           <level>INFO</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+
+        <encoder>
+            <pattern>%cn %d %M [%level] %msg%n</pattern>
+        </encoder>
+
+    </appender>
+
+
+    <!-- 日志滚动输出到文件-->
+    <appender name="WARN_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+
+        <!--日志文件名-->
+        <file>${log.path}/log_warn.log</file>
+
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+           <level>WARN</level>
+            <onMatch>ACCEPT</onMatch>
+             <onMismatch>DENY</onMismatch>
+        </filter>
+
+        <!-- 日志滚动规则  -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+
+            <!-- %d{yyyy-MM-dd}按天回滚日志-->
+            <fileNamePattern>${log.path}/warn/log_info_%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+            
+            <maxFileSize>100MB</maxFileSize>
+         
+            </timeBasedFileNamingAndTriggeringPolicy>
+
+        </rollingPolicy>
+
+        <encoder>
+            <pattern>%cn %d %M [%level] %msg%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+
+    </appender>
+
+
+     <!-- 日志滚动输出到文件-->
+    <appender name="ERROR_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+
+        <!--日志文件名-->
+        <file>${log.path}/error/log_error.log</file>
+
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+           <level>ERROR</level>
+            <onMatch>ACCEPT</onMatch>
+             <onMismatch>DENY</onMismatch>
+        </filter>
+
+        <!-- 日志滚动规则  -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+
+            <!-- %d{yyyy-MM-dd}按天回滚日志-->
+            <fileNamePattern>${log.path}/log_error_%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <!-- 上面设置的按天回滚，所以这里30代表的30天。最大保存历史30天-->
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+            
+            <maxFileSize>100MB</maxFileSize>
+         
+            </timeBasedFileNamingAndTriggeringPolicy>
+         
+
+        </rollingPolicy>
+
+        <encoder>
+            <pattern>%cn %d %M [%level] %msg%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+
+    </appender>
+    
+<!-- 开发环境：打印控制台 -->
+<springProfile name="dev">
+
+<logger name="com.guli" level="INFO"/>
+
+<root level="INFO">
+        <appender-ref ref="CONSOLE"/>
+       
+        <appender-ref ref="INFO_FILE"/>
+        <appender-ref ref="WARN_FILE"/>
+        <appender-ref ref="ERROR_FILE"/>
+       
+
+</root>
+
+</springProfile>
+
+<springProfile name="pro">
+
+
+<root level="INFO">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="DEBUG_FILE"/>
+        <appender-ref ref="INFO_FILE"/>
+        <appender-ref ref="WARN_FILE"/>
+        <appender-ref ref="ERROR_FILE"/>
+       
+
+</root>
+
+</springProfile>
+
+</configuration>

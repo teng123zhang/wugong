@@ -1,0 +1,39 @@
+server:
+  port: 9010
+
+  
+    
+spring:
+  application:
+    name: guli-video
+  profiles:
+    active: dev
+  datasource:
+    username:  root
+    password: Root
+    url: jdbc:mysql://localhost:3306/guli_0401?characterEncoding=UTF-8&useSSL=false&serverTimezone=GMT%2B8&rewriteBatchedStatements=true
+    driver-class-name: com.mysql.jdbc.Driver
+
+eureka:
+  client:
+    service-url:
+     defaultZone: http://localhost:8762/eureka/
+  instance:
+    appname: guli-video
+    prefer-ip-address: true   
+feign:
+  hystrix:
+    enabled:  false     
+  client:
+    config:
+      default:
+        connectTimeout: 3000 #单位毫秒
+        readTimeout: 12000 #单位毫秒    
+ 
+   
+tecent: 
+  secretId: AKIDaw2sSmCfEWYIo4HlTTIsDI6uUt474Qfd
+  secretKey: 76i38xVmmoZ6ML3UeYS6YkfJgmbT4RWK
+  region: ap-shanghai
+
+   

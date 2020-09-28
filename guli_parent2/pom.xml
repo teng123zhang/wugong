@@ -1,0 +1,128 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.rc.guli</groupId>
+  <artifactId>guli_parent2</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <name>guli_parent2</name>
+  <description>谷粒学院</description>
+  
+  <parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.1.15.BUILD-SNAPSHOT</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+	
+	
+	<modules>
+  	<module>../guli_teacher</module>
+  	<module>../guli_common</module>
+    <module>../guli_demo1</module>
+     <module>../guli_cos</module>
+      <module>../guli_poi</module>
+      <module>../guli-statistics</module>
+      <module>../guli-ucenter</module>
+      <module>../guli-order</module>
+      
+     
+  </modules>
+	
+	
+	 <dependencies>
+  	
+  	
+  	<!-- https://mvnrepository.com/artifact/com.alibaba/druid -->
+<dependency>
+    <groupId>com.alibaba</groupId>
+    <artifactId>druid</artifactId>
+    <version>1.1.12</version>
+</dependency>
+
+
+<!-- https://mvnrepository.com/artifact/com.baomidou/mybatis-plus-boot-starter -->
+	<dependency>
+    <groupId>com.baomidou</groupId>
+    <artifactId>mybatis-plus-boot-starter</artifactId>
+    <version>3.1.1</version>
+</dependency>
+
+
+
+<!-- https://mvnrepository.com/artifact/org.apache.velocity/velocity-engine-core -->
+<dependency>
+    <groupId>org.apache.velocity</groupId>
+    <artifactId>velocity-engine-core</artifactId>
+    <version>2.0</version>
+</dependency>
+
+
+    
+
+
+
+
+  	
+  	<!-- https://mvnrepository.com/artifact/io.springfox/springfox-swagger2 -->
+<dependency>
+    <groupId>io.springfox</groupId>
+    <artifactId>springfox-swagger2</artifactId>
+    <version>2.9.2</version>
+</dependency>
+  	
+  	<!-- https://mvnrepository.com/artifact/io.springfox/springfox-swagger-ui -->
+<dependency>
+    <groupId>io.springfox</groupId>
+    <artifactId>springfox-swagger-ui</artifactId>
+    <version>2.9.2</version>
+</dependency>
+
+
+<dependency> <groupId>io.swagger</groupId> <artifactId>swagger-annotations</artifactId> <version>1.5.21</version> </dependency>
+ <dependency> <groupId>io.swagger</groupId> <artifactId>swagger-models</artifactId> <version>1.5.21</version> </dependency>
+  	<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+<dependency>
+    <groupId>org.projectlombok</groupId>
+    <artifactId>lombok</artifactId>
+    
+</dependency>
+
+ 
+    
+
+<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>1.2.15</version>
+		</dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+           
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpcore</artifactId>
+            
+        </dependency>
+        <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+            <version>2.6</version>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-util</artifactId>
+           
+        </dependency>
+  	
+  	
+  </dependencies>
+  
+  
+	
+	  
+	
+	
+ 
+</project>

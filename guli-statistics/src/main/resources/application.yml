@@ -1,0 +1,29 @@
+spring:
+  application: 
+    name: guli-statistics
+  profiles:
+    active: dev
+  datasource:
+    username:  root
+    password: Root
+    url: jdbc:mysql://localhost:3306/guli_0401?characterEncoding=UTF-8&useSSL=false&serverTimezone=GMT%2B8&rewriteBatchedStatements=true
+    driver-class-name: com.mysql.cj.jdbc.Driver
+eureka:
+  client:
+    service-url:
+     defaultZone: http://localhost:8762/eureka/
+  instance:
+    appname: GULI-STATISTICS
+    prefer-ip-address: true   
+feign:
+  hystrix:
+    enabled:  false 
+
+  client:
+    config:
+      default:
+        connectTimeout: 3000 #单位毫秒
+        readTimeout: 12000 #单位毫秒    
+
+server:
+  port: 8051
